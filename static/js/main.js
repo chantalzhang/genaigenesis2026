@@ -12,10 +12,14 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-// ── Navbar glass on scroll ──────────────────────────
+// ── Navbar: dark glass over hero, light glass over white sections ──
 const navbar = document.getElementById('navbar');
-window.addEventListener(
-  'scroll',
-  () => navbar.classList.toggle('scrolled', window.scrollY > 40),
-  { passive: true }
-);
+const hero = document.querySelector('.hero');
+
+function updateNavbar() {
+  const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
+  navbar.classList.toggle('nav-light', window.scrollY > heroBottom - 80);
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+updateNavbar();
