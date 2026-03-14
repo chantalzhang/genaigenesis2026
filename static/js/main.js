@@ -1,4 +1,4 @@
-// Scroll reveal via Intersection Observer
+// ── Scroll reveal (Intersection Observer) ───────────
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -12,12 +12,10 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-// Navbar glass effect on scroll
+// ── Navbar glass on scroll ──────────────────────────
 const navbar = document.getElementById('navbar');
 window.addEventListener(
   'scroll',
-  () => {
-    navbar.classList.toggle('nav-scrolled', window.scrollY > 50);
-  },
+  () => navbar.classList.toggle('scrolled', window.scrollY > 40),
   { passive: true }
 );
