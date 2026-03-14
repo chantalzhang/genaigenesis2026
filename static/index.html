@@ -3,178 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Real Estate Agent — Find Your Dream Home via Text</title>
-  <meta name="description" content="Text our AI real estate agent and get personalized listings, instant callbacks, and scheduled viewings — all from your phone." />
+  <title>HomeBase AI — Find Your Next Home by Text</title>
+  <meta name="description" content="An AI-powered real estate assistant for Canada. Text to start, tell us what you need, and get matched listings by SMS." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-        },
-      },
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased overflow-x-hidden">
+<body>
 
-  <!-- Animated background blobs -->
-  <div class="blob-container" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <!-- Navbar -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="text-xl font-bold gradient-text">HomeAI</a>
-      <a href="sms:+18259067207"
-         class="btn-glow px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300">
-        Text Us Now
-      </a>
+  <!-- ── Navbar ──────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">HomeBase AI</a>
+      <a href="sms:+18259067207?&body=Hi%2C%20I%27m%20looking%20for%20a%20place"
+         class="nav-cta">Text Us</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="relative min-h-screen flex items-center justify-center px-6 pt-20">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <p class="text-cyan-400 font-semibold text-sm uppercase tracking-widest mb-4">AI-Powered Real Estate</p>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-        <span class="gradient-text">Find Your Dream Home</span><br />
-        <span class="text-white/90">With a Simple Text</span>
-      </h1>
-      <p class="text-lg sm:text-xl text-slate-400 mb-10 max-w-xl mx-auto">
-        Just text our AI agent. It understands what you want, finds matching listings, and connects you with viewings — no apps, no logins, no hassle.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="sms:+18259067207"
-           class="btn-glow px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 inline-flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-          Text +1 (825) 906-7207
-        </a>
-        <a href="#how-it-works" class="text-slate-400 hover:text-white transition-colors font-medium">
-          See how it works &darr;
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how-it-works" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <p class="text-cyan-400 font-semibold text-sm uppercase tracking-widest mb-3">Simple Process</p>
-        <h2 class="text-3xl sm:text-4xl font-bold">How It Works</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Step 1 -->
-        <div class="glass-card p-6 rounded-2xl text-center reveal">
-          <div class="step-number mx-auto mb-4">1</div>
-          <h3 class="text-lg font-bold mb-2">Text Us</h3>
-          <p class="text-slate-400 text-sm">Send a message describing your ideal home — budget, location, style.</p>
-        </div>
-        <!-- Step 2 -->
-        <div class="glass-card p-6 rounded-2xl text-center reveal">
-          <div class="step-number mx-auto mb-4">2</div>
-          <h3 class="text-lg font-bold mb-2">AI Calls You</h3>
-          <p class="text-slate-400 text-sm">Our AI agent calls to confirm your preferences and answer questions.</p>
-        </div>
-        <!-- Step 3 -->
-        <div class="glass-card p-6 rounded-2xl text-center reveal">
-          <div class="step-number mx-auto mb-4">3</div>
-          <h3 class="text-lg font-bold mb-2">Get Listings</h3>
-          <p class="text-slate-400 text-sm">Receive curated listings that match your criteria, sent right to your phone.</p>
-        </div>
-        <!-- Step 4 -->
-        <div class="glass-card p-6 rounded-2xl text-center reveal">
-          <div class="step-number mx-auto mb-4">4</div>
-          <h3 class="text-lg font-bold mb-2">Schedule Viewings</h3>
-          <p class="text-slate-400 text-sm">Book property tours instantly — all coordinated through text.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <p class="text-cyan-400 font-semibold text-sm uppercase tracking-widest mb-3">Why Choose Us</p>
-        <h2 class="text-3xl sm:text-4xl font-bold">Powered by Intelligence</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Feature 1 -->
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">AI-Powered Matching</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Our agent understands natural language — describe your dream home in your own words and get matches that actually fit.</p>
-        </div>
-        <!-- Feature 2 -->
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Real-Time Listings</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Access the freshest listings pulled from multiple sources the moment they go live — never miss a great property.</p>
-        </div>
-        <!-- Feature 3 -->
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Zero Hassle</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">No app downloads, no account signups, no forms. Just text a number and start your home search in seconds.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="glass-card rounded-3xl p-10 sm:p-14 text-center reveal cta-glow">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-          Ready to Find <span class="gradient-text">Your Home</span>?
-        </h2>
-        <p class="text-slate-400 mb-8 max-w-lg mx-auto">
-          Send us a text right now. Our AI agent is available 24/7 and ready to help you find the perfect place.
+  <!-- ── Hero ────────────────────────────────────────── -->
+  <section class="hero">
+    <!-- ── Video Background ── -->
+    <video class="hero-video" autoplay loop muted playsinline aria-hidden="true">
+      <source src="video/hero-background.webm" type="video/webm" />
+      <source src="video/hero-background.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <!-- Left: Copy -->
+      <div class="hero-copy">
+        <h1>Find your<br />next home<br /><span class="accent">by text</span></h1>
+        <p class="hero-sub">
+          Text our AI agent. Tell us what you need. Get matched
+          listings sent to&nbsp;your&nbsp;phone.
         </p>
-        <a href="sms:+18259067207"
-           class="btn-glow px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 inline-flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
+        <div class="hero-actions">
+          <!-- ── PRIMARY CTA — edit phone number & body below ── -->
+          <a href="sms:+18259067207?&body=Hi%2C%20I%27m%20looking%20for%20a%20place"
+             class="btn-primary" id="cta-sms">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Start Texting
+          </a>
+          <span class="hero-phone">+1 (825) 906‑7207</span>
+        </div>
+      </div>
+      <!-- Right: Conversation Preview (the product visual) -->
+      <div class="hero-visual">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-header">
+            <div class="phone-avatar">H</div>
+            <div>
+              <div class="phone-name">HomeBase AI</div>
+              <div class="phone-number">iMessage</div>
+            </div>
+          </div>
+          <div class="sms-thread">
+            <div class="sms sms-out">Hi, I'm looking for a place</div>
+            <div class="sms sms-in">Hey! I'd love to help you find a place. Can I give you a call to learn what you're looking for? Reply YES to confirm. 🏠</div>
+            <div class="sms sms-out">YES</div>
+            <div class="sms sms-in">Great! We'll call you shortly.</div>
+            <div class="sms sms-in">
+              Here's your top match! 🎉
+              <div class="listing-card">
+                <span class="listing-badge">Best Match · 94%</span>
+                <div class="listing-title">2BR Apartment — Downtown Calgary</div>
+                <div class="listing-meta">2 bed · 1 bath · Pet-friendly · Apr 1</div>
+                <div class="listing-price">$1,850/mo</div>
+              </div>
+            </div>
+            <div class="sms sms-in">
+              <div class="listing-card">
+                <span class="listing-badge badge-alt">Great Fit · 89%</span>
+                <div class="listing-title">1BR + Den — Kensington</div>
+                <div class="listing-meta">1 bed · 1 bath · In-suite laundry · May 1</div>
+                <div class="listing-price">$1,650/mo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ────────────────────────────────── -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="how-header reveal">
+        <span class="eyebrow">How It Works</span>
+        <h2>Three steps.<br />Zero hassle.</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <span class="step-num">01</span>
+          <h3>Text Us</h3>
+          <p>Send a quick text to our number. We reply instantly and ask if you're ready for a short&nbsp;call.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-num">02</span>
+          <h3>Tell Us What You Need</h3>
+          <p>On the call, our AI asks about budget, area, move-in date, and deal-breakers — like a helpful&nbsp;friend.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-num">03</span>
+          <h3>Get Matches by SMS</h3>
+          <p>We search real listings, rank the best ones, and text you the results — ready&nbsp;to&nbsp;view.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────── -->
+  <section class="features">
+    <div class="container">
+      <div class="features-header reveal">
+        <span class="eyebrow">Why HomeBase AI</span>
+        <h2>Powered by<br />intelligence</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Natural Language</h3>
+          <p>Describe your ideal home in your own words — our AI understands context, not&nbsp;keywords.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Real-Time Listings</h3>
+          <p>Access the freshest listings the moment they go live — never miss a great&nbsp;property.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Zero Hassle</h3>
+          <p>No apps, no accounts, no forms. Just text a number and start your home search.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ─────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <h2>Ready to find your&nbsp;home?</h2>
+        <p>Our AI agent is available 24/7.</p>
+        <a href="sms:+18259067207?&body=Hi%2C%20I%27m%20looking%20for%20a%20place"
+           class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Text +1 (825) 906-7207
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-10 px-6 border-t border-white/5">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-      <p>Built at <span class="text-slate-300 font-semibold">GenAI Genesis 2026</span></p>
-      <a href="sms:+18259067207" class="text-slate-400 hover:text-white transition-colors">+1 (825) 906-7207</a>
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <p>Built at <strong>GenAI Genesis 2026</strong></p>
+      <a href="sms:+18259067207?&body=Hi%2C%20I%27m%20looking%20for%20a%20place">+1 (825) 906‑7207</a>
     </div>
   </footer>
 
