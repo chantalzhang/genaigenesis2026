@@ -606,33 +606,39 @@ button.hero-phone {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3px;
-  width: 56px;
-  height: 56px;
-  box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.12);
+  gap: 6px;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  padding: 8px;
+  padding: 0;
   cursor: default;
   color: #ffffff;
+}
+
+.call-btn-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .call-btn svg {
   flex-shrink: 0;
 }
 
-.call-btn span {
-  font-size: 0.55rem;
+.call-btn-label {
+  font-size: 0.6rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
-  text-transform: lowercase;
+  text-transform: capitalize;
   line-height: 1.1;
 }
 
-/* End button (in grid): red, phone icon facing down */
-.call-btn.call-end-btn {
+/* End button (in grid): red circle, phone icon facing down */
+.call-btn.call-end-btn .call-btn-circle {
   background: #e53935;
 }
 
