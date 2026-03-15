@@ -10,7 +10,7 @@
 
 Agent<sup>2</sup> is an end-to-end AI-powered home buying assistant. A user texts our number, receives a call from an AI voice agent (Mary), describes what kind of home they want in plain conversation, and gets real listings texted back — then we contact the listing agent on their behalf.
 
-1. **Listens** to the conversation via a Telnyx + PersonaPlex voice pipeline with real-time echo cancellation (SpeexDSP AEC + RNNoise)
+1. **Listens** to the conversation via a Telnyx + PersonaPlex voice pipeline
 2. **Extracts** structured search criteria (location, budget, bedrooms, features, etc.) from the transcript using an LLM
 3. **Scrapes** Zillow for matching listings with filtered search URLs, scores them against the criteria, and ranks by fit
 4. **Contacts agents** on the caller's behalf by automating the "Contact Agent" form on Zillow with Playwright
