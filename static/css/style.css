@@ -646,6 +646,12 @@ button.hero-phone {
   line-height: 1.05;
 }
 
+.underline-green {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 /* How it works: three phones (same as hero) */
 .how-phones-grid {
   display: grid;
