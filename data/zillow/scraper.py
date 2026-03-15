@@ -1,9 +1,13 @@
-"""Zillow search: broad scrape, then score & rank listings against criteria."""
+"""Zillow search: broad scrape, detail fetch for features, then score & rank."""
+import logging
 import re
 from urllib.parse import quote_plus
 
+from .detail import fetch_detail_features
 from .parse import dedupe_links, listing_links_from_html, parse_listings
 from .playwright_fetch import fetch_html
+
+logger = logging.getLogger(__name__)
 
 SEARCH_SELECTOR = "script[data-zrr-shared-data-key], article, [data-test='property-card-price']"
 
@@ -15,7 +19,12 @@ SEARCH_SELECTOR = "script[data-zrr-shared-data-key], article, [data-test='proper
 def build_search_url(criteria: dict) -> str:
     loc = criteria.get("location", {})
     if isinstance(loc, dict):
-        location = loc.get("query") or loc.get("city") or loc.get("state_province") or ""
+        parts = []
+        for key in ("neighborhood", "city", "state_province"):
+            val = loc.get(key)
+            if val:
+                parts.append(val)
+        location = ", ".join(parts) if parts else (loc.get("query") or "")
     else:
         location = str(loc)
 
@@ -52,13 +61,16 @@ def _parse_sqft(sqft_str: str) -> int | None:
 # Scoring — how well does a listing match the criteria?
 # ---------------------------------------------------------------------------
 
-def _score_listing(listing: dict, criteria: dict) -> tuple[float, list[str]]:
+def _score_listing(listing: dict, criteria: dict) -> tuple[float, list[str], list[str]]:
     """
-    Score 0.0 (worst) to 1.0 (perfect match).
-    Returns (score, list_of_violation_strings).
+    Returns (score, violations, feature_notes).
+    score: 0.0 (worst) to ~2.0 (perfect match on everything).
+    violations: hard mismatches.
+    feature_notes: info about feature matches/misses.
     """
     score = 1.0
     violations = []
+    feature_notes = []
 
     price = _parse_price(listing.get("price", ""))
     beds = _parse_beds(listing.get("beds", ""))
@@ -121,13 +133,58 @@ def _score_listing(listing: dict, criteria: dict) -> tuple[float, list[str]]:
             violations.append(f"sqft {sqft} < min {sqft_min}")
             score -= 0.1
 
-    # Bonus: if we couldn't parse price/beds the listing is incomplete — small penalty
+    # --- property type (from title heuristic) ---
+    prop_types = criteria.get("property_type", [])
+    if prop_types:
+        title_lower = (listing.get("title") or "").lower()
+        url_lower = (listing.get("url") or "").lower()
+        text = title_lower + " " + url_lower
+        type_matched = any(t in text for t in prop_types)
+        if type_matched:
+            score += 0.1
+            feature_notes.append("property_type: match from title/url")
+
+    # --- keywords (from title heuristic) ---
+    keywords = criteria.get("keywords", [])
+    title_lower = (listing.get("title") or "").lower()
+    for kw in keywords:
+        if kw.lower() in title_lower:
+            score += 0.05
+            feature_notes.append(f"keyword '{kw}': found in title")
+
+    # --- features (from detail page data) ---
+    detail = listing.get("_detail_features", {})
+    features_found = set(detail.get("features_found", []))
+    features_absent = set(detail.get("features_absent", []))
+
+    feat_crit = criteria.get("features", {}) if isinstance(criteria.get("features"), dict) else {}
+    required = feat_crit.get("required", [])
+    nice_to_have = feat_crit.get("nice_to_have", [])
+
+    for feat in required:
+        if feat in features_found:
+            score += 0.15
+            feature_notes.append(f"required '{feat}': FOUND")
+        elif feat in features_absent:
+            score -= 0.2
+            violations.append(f"required feature '{feat}' not available")
+            feature_notes.append(f"required '{feat}': ABSENT")
+        else:
+            feature_notes.append(f"required '{feat}': unknown")
+
+    for feat in nice_to_have:
+        if feat in features_found:
+            score += 0.1
+            feature_notes.append(f"nice-to-have '{feat}': FOUND")
+        elif feat in features_absent:
+            feature_notes.append(f"nice-to-have '{feat}': absent")
+
     if price is None:
         score -= 0.05
     if beds is None:
         score -= 0.05
 
-    return (max(score, 0.0), violations)
+    return (max(score, 0.0), violations, feature_notes)
 
 
 def rank_listings(listings: list[dict], criteria: dict) -> dict:
@@ -137,8 +194,13 @@ def rank_listings(listings: list[dict], criteria: dict) -> dict:
     """
     scored = []
     for listing in listings:
-        s, v = _score_listing(listing, criteria)
-        scored.append({**listing, "_score": round(s, 3), "_violations": v})
+        s, v, fn = _score_listing(listing, criteria)
+        scored.append({
+            **listing,
+            "_score": round(s, 3),
+            "_violations": v,
+            "_feature_notes": fn,
+        })
 
     scored.sort(key=lambda x: x["_score"], reverse=True)
 
@@ -147,6 +209,8 @@ def rank_listings(listings: list[dict], criteria: dict) -> dict:
 
     if matches:
         message = f"Found {len(matches)} listing(s) matching your criteria."
+        if nearest:
+            message += f" Plus {len(nearest)} close alternative(s)."
     elif nearest:
         message = (
             "No exact matches found for your criteria. "
@@ -163,10 +227,29 @@ def rank_listings(listings: list[dict], criteria: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Detail enrichment — fetch features for each listing
+# ---------------------------------------------------------------------------
+
+def _enrich_with_details(listings: list[dict]) -> list[dict]:
+    """Fetch the detail page for every listing and attach feature data."""
+    enriched = []
+    for i, listing in enumerate(listings):
+        url = listing.get("url", "")
+        if not url:
+            enriched.append({**listing, "_detail_features": {}})
+            continue
+        logger.info("Fetching details %d/%d: %s", i + 1, len(listings), url[:80])
+        print(f"[detail] {i + 1}/{len(listings)}: {listing.get('title', url)[:60]}")
+        features = fetch_detail_features(url)
+        enriched.append({**listing, "_detail_features": features})
+    return enriched
+
+
+# ---------------------------------------------------------------------------
 # Main search entry point
 # ---------------------------------------------------------------------------
 
-def search(criteria: dict, *, headless: bool = False) -> dict:
+def search(criteria: dict, *, headless: bool = False, fetch_details: bool = True) -> dict:
     url = build_search_url(criteria)
     html = fetch_html(
         url,
@@ -189,6 +272,10 @@ def search(criteria: dict, *, headless: bool = False) -> dict:
     if not links and listings:
         links = [r.get("url", "") or "" for r in listings]
     links = dedupe_links(links)
+
+    if fetch_details and listings:
+        print(f"\n[detail] Fetching features for {len(listings)} listings...")
+        listings = _enrich_with_details(listings)
 
     return {
         "search_url": url,
