@@ -38,7 +38,7 @@ def test_extract_search_criteria_from_transcript():
     assert "jersey" in loc_text.lower(), f"Expected NJ somewhere in location, got {loc}"
 
     # -- intent --
-    assert result["intent"] in ("rent", "buy")
+    assert result["intent"] == "buy"
 
     # -- bedrooms --
     assert result["bedrooms"]["min"] == 2

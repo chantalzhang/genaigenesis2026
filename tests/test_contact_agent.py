@@ -14,12 +14,7 @@ def test_contact_flow_preview():
 
     listing_url = "https://www.zillow.com/homedetails/59-Braywin-Dr-Toronto-ON-M9P-2P2/2077138476_zpid/"
 
-    lead = Lead(
-        name="Maya Chen",
-        email="maya@personaplex.ai",
-        phone="+18252035213",
-        message="Hi, I'm interested in a 2-bedroom unit. Are pets allowed? I have a small dog. When is the earliest move-in date?",
-    )
+    lead = Lead()
 
     print(f"\n=== CONTACT AGENT TEST ===")
     print(f"  Listing: {listing_url}")
@@ -32,7 +27,6 @@ def test_contact_flow_preview():
         mode="preview",
         headless=False,
         slow_mo_ms=150,
-        beds_min=2,
     )
 
     print(f"\n=== RESULT ===")
