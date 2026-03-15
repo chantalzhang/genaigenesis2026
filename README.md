@@ -294,3 +294,53 @@ Each listing is scored against criteria:
 - **Deduplication**: seen listings tracked per session, never sent twice
 
 Listings split into **exact matches** and **nearest alternatives** (ranked by score, violations listed).
+
+---
+
+## Feedback prompt injection
+
+When a user rejects a listing, the system doesn't just move to the next result — it learns from the rejection in real time.
+
+```
+User receives listing → replies NO
+        │
+        ▼
+  "What didn't you like about it?"
+        │
+        ▼
+  User: "Too far from downtown" or "No backyard" or "Too expensive"
+        │
+        ▼
+  Rejection reason stored in session → injected into LLM ranking prompt
+        │
+        ▼
+  Next search: LLM sees all prior rejection feedback when picking the best listing
+```
+
+### How it works
+
+Each session maintains a `rejection_reasons` list. Every time the user says NO and explains why, their feedback is appended:
+
+```python
+session["rejection_reasons"].append("Too far from transit, I need something walkable")
+session["rejection_reasons"].append("No parking, that's a dealbreaker")
+```
+
+When the LLM ranks the next batch of listings, all accumulated rejection feedback is injected directly into the ranking prompt:
+
+```
+User rejection feedback from previous listings:
+Too far from transit, I need something walkable
+No parking, that's a dealbreaker
+
+Listings (index: address — price — beds/baths — match score — violations):
+0: 123 Main St — $750,000 — 3 bed/2 bath — score: 1.45 — violations: []
+1: 456 Oak Ave — $680,000 — 3 bed/2 bath — score: 1.30 — violations: []
+...
+
+Pick the single best listing for this user.
+```
+
+The LLM uses this context to avoid repeating the same mistakes — if the user said "too far from downtown," it will favor central listings even if a suburban one scores higher on paper. This creates a **conversational refinement loop** where each rejection makes the next suggestion smarter, without re-extracting criteria or re-running the voice call.
+
+The page counter also increments on each rejection, pulling fresh Zillow results so the user never sees the same listing twice.
