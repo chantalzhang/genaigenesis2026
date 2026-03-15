@@ -6,12 +6,9 @@ python-multipart
 httpx
 requests
 beautifulsoup4
-pandas
-xlsxwriter
 lxml
 playwright
 playwright-stealth
-multion
 railtracks
 railtracks[cli]
 openai
