@@ -28,9 +28,8 @@ def build_search_url(criteria: dict) -> str:
     else:
         location = str(loc)
 
-    intent = criteria.get("intent", "rent")
     slug = quote_plus(location)
-    return f"https://www.zillow.com/homes/for_{intent}/{slug}/"
+    return f"https://www.zillow.com/homes/for_sale/{slug}/"
 
 
 # ---------------------------------------------------------------------------
