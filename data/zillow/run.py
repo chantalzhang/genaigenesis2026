@@ -23,11 +23,11 @@ def main():
     else:
         criteria = {
             "location": {"query": "New York NY", "city": "New York", "state_province": "NY"},
-            "intent": "rent",
-            "price": {"min": None, "max": 3000},
-            "bedrooms": {"min": 1, "max": None},
+            "intent": "buy",
+            "price": {"min": None, "max": 500000},
+            "bedrooms": {"min": 2, "max": None},
             "bathrooms": {"min": None, "max": None},
-            "property_type": [],
+            "property_type": ["house"],
             "features": {"required": [], "nice_to_have": []},
         }
 
