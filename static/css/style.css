@@ -585,26 +585,29 @@ button.hero-phone {
 .call-controls {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 36px;
   margin: 24px 0 20px;
 }
 
 .call-control-row {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 44px;
 }
 
 .call-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 3px;
   width: 56px;
+  height: 56px;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.12);
   border: none;
   border-radius: 50%;
-  padding: 14px;
+  padding: 8px;
   cursor: default;
   color: #ffffff;
 }
@@ -614,27 +617,19 @@ button.hero-phone {
 }
 
 .call-btn span {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   text-transform: lowercase;
+  line-height: 1.1;
 }
 
-.call-end-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+/* End button (in grid): red, phone icon facing down */
+.call-btn.call-end-btn {
   background: #e53935;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  cursor: default;
-  flex-shrink: 0;
 }
 
-.call-end-btn svg {
+.call-btn.call-end-btn .call-phone-down {
   transform: rotate(135deg);
 }
 
