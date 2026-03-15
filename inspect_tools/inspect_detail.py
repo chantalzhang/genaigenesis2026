@@ -2,11 +2,11 @@
 Tool: Inspect the structure of a Zillow detail page to find features/facts/policies.
 
 Usage:
-    python -m data.zillow.inspect_detail <url_or_local_html>
+    python -m inspect_tools.inspect_detail <url_or_local_html>
 
 Examples:
-    python -m data.zillow.inspect_detail https://www.zillow.com/apartments/orange-nj/the-elks/CqTWcY/
-    python -m data.zillow.inspect_detail data/output/detail_sample.html
+    python -m inspect_tools.inspect_detail https://www.zillow.com/apartments/orange-nj/the-elks/CqTWcY/
+    python -m inspect_tools.inspect_detail data/output/detail_sample.html
 """
 import json
 import sys
@@ -79,7 +79,7 @@ def main():
         html = path.read_text(encoding="utf-8")
     else:
         print(f"Fetching URL: {target}")
-        from .playwright_fetch import fetch_html
+        from data.zillow.playwright_fetch import fetch_html
         html = fetch_html(target, headless=True)
         if not html:
             print("Failed to fetch page.")
