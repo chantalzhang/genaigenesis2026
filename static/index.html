@@ -56,37 +56,54 @@
       <!-- Right: Conversation Preview (the product visual) -->
       <div class="hero-visual">
         <div class="phone-frame">
-          <div class="phone-notch"></div>
-          <div class="phone-header">
-            <div class="phone-avatar">H</div>
-            <div>
-              <div class="phone-name">HomeBase AI</div>
-              <div class="phone-number">iMessage</div>
+          <!-- iOS Status Bar -->
+          <div class="ios-status-bar">
+            <span class="ios-time">9:41</span>
+            <div class="phone-notch"></div>
+            <div class="ios-icons">
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+                <rect x="0" y="3" width="3" height="9" rx="1" />
+                <rect x="4.5" y="2" width="3" height="10" rx="1" />
+                <rect x="9" y="0" width="3" height="12" rx="1" />
+                <rect x="13.5" y="4" width="2.5" height="8" rx="1" />
+              </svg>
+              <svg width="18" height="12" viewBox="0 0 24 16" fill="currentColor">
+                <rect x="1" y="1" width="20" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <rect x="3" y="3" width="14" height="8" rx="1" />
+                <rect x="22" y="5" width="2" height="4" rx="0.5" />
+              </svg>
             </div>
           </div>
+          <!-- iMessage header -->
+          <div class="phone-header">
+            <div class="imsg-back">
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#34d399" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="8,1 2,8 8,15" />
+              </svg>
+            </div>
+            <div class="imsg-contact">
+              <div class="phone-avatar">H</div>
+              <div class="phone-name">HomeBase AI</div>
+            </div>
+          </div>
+          <!-- iMessage thread -->
           <div class="sms-thread">
+            <div class="imsg-date">Today 9:41 AM</div>
             <div class="sms sms-out">Hi, I'm looking for a place</div>
-            <div class="sms sms-in">Hey! I'd love to help you find a place. Can I give you a call to learn what you're
-              looking for? Reply YES to confirm. 🏠</div>
+            <div class="sms sms-in">Hey! 👋 I'd love to help. Can I call you to learn more about what you need? Reply
+              YES.</div>
             <div class="sms sms-out">YES</div>
-            <div class="sms sms-in">Great! We'll call you shortly.</div>
-            <div class="sms sms-in">
-              Here's your top match! 🎉
-              <div class="listing-card">
-                <span class="listing-badge">Best Match · 94%</span>
-                <div class="listing-title">2BR Apartment — Downtown Calgary</div>
-                <div class="listing-meta">2 bed · 1 bath · Pet-friendly · Apr 1</div>
-                <div class="listing-price">$1,850/mo</div>
-              </div>
-            </div>
-            <div class="sms sms-in">
-              <div class="listing-card">
-                <span class="listing-badge badge-alt">Great Fit · 89%</span>
-                <div class="listing-title">1BR + Den — Kensington</div>
-                <div class="listing-meta">1 bed · 1 bath · In-suite laundry · May 1</div>
-                <div class="listing-price">$1,650/mo</div>
-              </div>
-            </div>
+            <div class="sms sms-in">Great! Calling you now 📞</div>
+            <div class="sms sms-in">Here are your top matches! 🎉</div>
+            <div class="sms sms-in"><strong>$1,850/mo</strong> – Downtown Calgary<br />2 bed · 1 bath ·
+              Pet-friendly<br /><span class="listing-note">94% match · Available Apr 1</span></div>
+            <div class="sms sms-in"><strong>$1,650/mo</strong> – Kensington<br />1 bed + den · In-suite
+              laundry<br /><span class="listing-note">89% match · Available May 1</span></div>
+          </div>
+          <!-- Input bar -->
+          <div class="imsg-input-bar">
+            <div class="imsg-input-pill">Text Message</div>
           </div>
         </div>
       </div>
