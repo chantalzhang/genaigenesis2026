@@ -629,6 +629,36 @@ button.hero-phone {
   line-height: 1.05;
 }
 
+/* How it works: three phones (same as hero) */
+.how-phones-grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .how-phones-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+.how-phone-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .how-phone-wrap {
+    max-width: 100%;
+  }
+}
+
 .steps-grid {
   display: grid;
   gap: 16px;
@@ -857,6 +887,14 @@ footer {
 }
 
 .features-grid .reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.how-phones-grid .reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.how-phones-grid .reveal:nth-child(3) {
   transition-delay: 0.2s;
 }
 
