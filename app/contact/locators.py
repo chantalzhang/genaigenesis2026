@@ -10,12 +10,9 @@ LOG = logging.getLogger(__name__)
 # CTA text patterns (order matters: try most specific first)
 CTA_PATTERNS = [
     re.compile(r"contact\s+agent", re.I),
-    re.compile(r"request\s+a\s+tour", re.I),
     re.compile(r"ask\s+a\s+question", re.I),
-    re.compile(r"schedule\s+(a\s+)?tour", re.I),
     re.compile(r"contact\s+listing", re.I),
     re.compile(r"^contact$", re.I),
-    re.compile(r"^tour$", re.I),
     re.compile(r"message\s+(agent|listing)?", re.I),
     re.compile(r"^message$", re.I),
     re.compile(r"reach\s+out", re.I),
@@ -98,7 +95,6 @@ def get_submit_button_candidates(page: Page, scope: Optional[Locator] = None) ->
     patterns = [
         re.compile(r"submit|send", re.I),
         re.compile(r"contact\s+agent", re.I),
-        re.compile(r"request\s+tour", re.I),
         re.compile(r"send\s+message", re.I),
         re.compile(r"^submit$", re.I),
     ]
