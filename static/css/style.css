@@ -281,7 +281,7 @@ a {
 
 /* Extra space between "Agent" and superscript ² */
 .hero-copy h1 > .accent {
-  margin-left: 0.1em;
+  margin-left: 0.14em;
 }
 
 .hero-sub {
@@ -364,6 +364,23 @@ button.hero-phone {
 .hero-visual {
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+/* Soft green overlay behind hero phone only — blends into dark hero background */
+.hero .hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: -19%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(52, 199, 89, 0.16) 0%,
+    rgba(52, 199, 89, 0.07) 32%,
+    rgba(52, 199, 89, 0.03) 58%,
+    transparent 75%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* ── Buttons — Liquid Glass ────────────────────────── */
@@ -417,12 +434,12 @@ button.hero-phone {
   overflow: hidden;
   background: #f7f7f8;
   border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 5px solid #1a1a1a;
   display: flex;
   flex-direction: column;
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+    0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -441,7 +458,7 @@ button.hero-phone {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 20px 0;
+  padding: 0 20px 0;
   font-size: 0.72rem;
   font-weight: 600;
   color: #111111;
@@ -463,11 +480,18 @@ button.hero-phone {
 }
 
 .phone-notch {
-  width: 80px;
+  width: 105px;
   height: 20px;
-  background: #000;
+  background: #1a1a1a;
   border-radius: 0 0 12px 12px;
   flex-shrink: 0;
+}
+
+/* Call phone only: notch floats below top, rounded rectangle (Dynamic Island style) */
+.phone-frame.phone-call .phone-notch {
+  margin-top: 8px;
+  border-radius: 12px;
+  height: 24px;
 }
 
 .ios-icons svg {
@@ -517,6 +541,117 @@ button.hero-phone {
   font-size: 0.65rem;
   font-weight: 700;
   color: #fff;
+  flex-shrink: 0;
+}
+
+/* ── Phone call screen (second phone) ───────────────── */
+.phone-frame.phone-call {
+  background: linear-gradient(180deg, #2a2d28 0%, #1e2230 45%, #16182a 100%);
+}
+
+.phone-frame.phone-call .ios-status-bar,
+.phone-frame.phone-call .ios-icons {
+  color: #ffffff;
+}
+
+.call-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 16px;
+  background: transparent;
+  min-height: 0;
+}
+
+.call-info {
+  text-align: center;
+  margin-bottom: auto;
+  padding-top: 20px;
+}
+
+.call-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.call-duration {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.call-name .agent-two,
+.phone-name .agent-two {
+  margin-left: 0.14em;
+}
+
+.call-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin: 24px 0 20px;
+}
+
+.call-control-row {
+  display: flex;
+  justify-content: center;
+  gap: 44px;
+}
+
+.call-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: default;
+  color: #ffffff;
+}
+
+.call-btn-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.call-btn svg {
+  flex-shrink: 0;
+}
+
+.call-btn-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: capitalize;
+  line-height: 1.1;
+}
+
+/* End button (in grid): red circle, phone icon facing down */
+.call-btn.call-end-btn .call-btn-circle {
+  background: #e53935;
+}
+
+.call-btn.call-end-btn .call-phone-down {
+  transform: rotate(135deg);
+}
+
+.call-home-indicator {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  margin-top: 12px;
   flex-shrink: 0;
 }
 
@@ -603,7 +738,15 @@ button.hero-phone {
    HOW IT WORKS
    ───────────────────────────────────────────────────── */
 .how {
-  padding: 160px 0 120px;
+  padding: 80px 0 64px;
+}
+
+.how .container {
+  max-width: 1200px;
+}
+
+.how .how-header {
+  margin-bottom: 40px;
 }
 
 .how-header,
@@ -627,6 +770,64 @@ button.hero-phone {
   font-weight: 800;
   letter-spacing: -1.5px;
   line-height: 1.05;
+}
+
+.how-header .eyebrow {
+  font-size: 0.85rem;
+}
+
+.how-header h2 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+}
+
+.underline-green {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* How it works: three phones (same as hero) */
+.how-phones-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+/* Phones in how section — room to be bigger with one-line header */
+.how-phones-grid .phone-frame {
+  max-width: 300px;
+  max-height: 560px;
+}
+
+@media (min-width: 768px) {
+  .how-phones-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    align-items: start;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .how-phones-grid .phone-frame {
+    max-width: 300px;
+    max-height: 565px;
+  }
+}
+
+.how-phone-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .how-phone-wrap {
+    max-width: 100%;
+  }
 }
 
 .steps-grid {
@@ -857,6 +1058,14 @@ footer {
 }
 
 .features-grid .reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.how-phones-grid .reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.how-phones-grid .reveal:nth-child(3) {
   transition-delay: 0.2s;
 }
 
