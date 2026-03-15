@@ -23,7 +23,7 @@
   --cyan: #22d3ee;
   --cyan-soft: rgba(34, 211, 238, 0.10);
 
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
   --max-w: 1140px;
   --radius: 14px;
 }
