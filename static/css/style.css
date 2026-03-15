@@ -225,11 +225,11 @@ a {
   z-index: 1;
   background:
     linear-gradient(180deg,
-      rgba(8, 9, 12, 0.68) 0%,
-      rgba(8, 9, 12, 0.6) 40%,
-      rgba(8, 9, 12, 0.78) 100%),
+      rgba(8, 9, 12, 0.66) 0%,
+      rgba(8, 9, 12, 0.58) 40%,
+      rgba(8, 9, 12, 0.76) 100%),
     linear-gradient(90deg,
-      rgba(8, 9, 12, 0.6) 0%,
+      rgba(8, 9, 12, 0.58) 0%,
       transparent 60%);
   pointer-events: none;
 }
@@ -307,7 +307,7 @@ a {
 
 .hero-phone {
   font-family: var(--font);
-  font-size: 1.55rem;
+  font-size: 1.15rem;
   color: var(--text);
   font-weight: 500;
   letter-spacing: 0.2px;
@@ -325,12 +325,16 @@ button.hero-phone {
   border: none;
   padding: 0;
   cursor: pointer;
-  font: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
   color: inherit;
 }
 
 .hero button.hero-phone {
   font-family: var(--font);
+  font-size: 1.15rem;
+  font-weight: 500;
   color: #ffffff;
 }
 
@@ -952,8 +956,10 @@ footer {
     padding: 17px 28px;
   }
 
-  .hero-phone {
-    font-size: 1.4rem;
+  .hero-phone,
+  .hero button.hero-phone {
+    font-size: 1.05rem;
+    font-weight: 500;
   }
 
   .btn-primary {
