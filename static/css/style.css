@@ -281,7 +281,7 @@ a {
 
 /* Extra space between "Agent" and superscript ² */
 .hero-copy h1 > .accent {
-  margin-left: 0.1em;
+  margin-left: 0.14em;
 }
 
 .hero-sub {
@@ -534,6 +534,116 @@ button.hero-phone {
   font-size: 0.65rem;
   font-weight: 700;
   color: #fff;
+  flex-shrink: 0;
+}
+
+/* ── Phone call screen (second phone) ───────────────── */
+.phone-frame.phone-call {
+  background: transparent;
+}
+
+.phone-frame.phone-call .ios-status-bar,
+.phone-frame.phone-call .ios-icons {
+  color: #ffffff;
+}
+
+.call-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 16px;
+  background: linear-gradient(180deg, #2a2d28 0%, #1e2230 45%, #16182a 100%);
+  min-height: 0;
+}
+
+.call-info {
+  text-align: center;
+  margin-bottom: auto;
+  padding-top: 20px;
+}
+
+.call-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.call-duration {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.call-name .agent-two,
+.phone-name .agent-two {
+  margin-left: 0.14em;
+}
+
+.call-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 24px 0 20px;
+}
+
+.call-control-row {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+}
+
+.call-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 56px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  padding: 14px;
+  cursor: default;
+  color: #ffffff;
+}
+
+.call-btn svg {
+  flex-shrink: 0;
+}
+
+.call-btn span {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+}
+
+.call-end-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e53935;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.call-end-btn svg {
+  transform: rotate(135deg);
+}
+
+.call-home-indicator {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  margin-top: 12px;
   flex-shrink: 0;
 }
 
